@@ -1,17 +1,14 @@
-import { Platform, StyleSheet, Button, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Button, View } from 'react-native';
 import { router } from 'expo-router';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebaseConfig';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
-import { AppColors, AppSpacing } from '@/constants/app-theme';
+import { AppColors, AppSpacing, AppFontSizes } from '@/constants/app-theme';
 
 export default function SobreScreen() {
   const handleLogout = async () => {
@@ -31,7 +28,7 @@ export default function SobreScreen() {
         <IconSymbol
           size={310}
           color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
+          name="info.circle.fill" // Using a generic info icon for "Sobre"
           style={styles.headerImage}
         />
       }>
@@ -41,69 +38,34 @@ export default function SobreScreen() {
           style={{
             fontFamily: Fonts.rounded,
           }}>
-          Sobre
+          Sobre o App
         </ThemedText>
       </ThemedView>
-      <ThemedText>Este aplicativo inclui código de exemplo para ajudar você a começar.</ThemedText>
-      <Collapsible title="Roteamento baseado em arquivos">
-        <ThemedText>
-          Este aplicativo tem duas telas:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> e{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/sobre.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          O arquivo de layout em <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          configura o navegador de abas.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Saiba mais</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Suporte para Android, iOS e web">
-        <ThemedText>
-          Você pode abrir este projeto no Android, iOS e na web. Para abrir a versão web, pressione{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> no terminal que está executando este projeto.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Ícones">
-        <ThemedText>
-          Este aplicativo usa ícones de{' '}
-          <ThemedText type="defaultSemiBold">@expo/vector-icons</ThemedText>.
-        </ThemedText>
-        <Ionicons name="logo-react" size={100} color="black" style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://icons.expo.fyi/">
-          <ThemedText type="link">Navegue por todos os ícones</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Componentes de modo claro e escuro">
-        <ThemedText>
-          Este modelo tem suporte para modo claro e escuro. O{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook permite inspecionar
-          qual é o esquema de cores atual do usuário e, assim, você pode ajustar as cores da interface do usuário de acordo.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Saiba mais</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animações">
-        <ThemedText>
-          Este modelo inclui um exemplo de um componente animado. O{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> componente usa
-          a poderosa{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          biblioteca para criar uma animação de mão acenando.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              O <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              componente fornece um efeito de paralaxe para a imagem do cabeçalho.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
+      <ThemedText style={styles.descriptionText}>
+        O GoalTracker é um aplicativo de rastreamento de metas intuitivo e fácil de usar, projetado para ajudá-lo a alcançar seus objetivos. Com ele, você pode:
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        • Cadastrar e fazer login de forma segura.
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        • Adicionar metas, sejam elas de conclusão única ou progressivas, com unidades de medida personalizadas.
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        • Acompanhar o progresso de suas metas em tempo real.
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        • Marcar metas como concluídas e editá-las conforme necessário.
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        • Visualizar estatísticas gerais de suas metas na tela inicial.
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        • Fazer um teste de aptidão de carreira para receber sugestões personalizadas.
+      </ThemedText>
+      <ThemedText style={styles.descriptionText}>
+        Nosso objetivo é simplificar o gerenciamento de metas e motivá-lo em sua jornada de desenvolvimento pessoal e profissional.
+      </ThemedText>
+
       <View style={styles.logoutContainer}>
         <Button title="Logout" onPress={handleLogout} color={AppColors.error} />
       </View>
@@ -121,9 +83,17 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+    marginBottom: AppSpacing.medium,
+  },
+  descriptionText: {
+    fontSize: AppFontSizes.medium,
+    marginBottom: AppSpacing.small,
+    lineHeight: AppFontSizes.large,
+    color: AppColors.textLight,
   },
   logoutContainer: {
-    marginTop: AppSpacing.large,
+    marginTop: AppSpacing.large * 2,
     paddingHorizontal: AppSpacing.large,
+    width: '100%',
   }
 });
