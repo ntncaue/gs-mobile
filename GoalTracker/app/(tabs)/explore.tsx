@@ -1,5 +1,5 @@
-import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Collapsible } from '@/components/ui/collapsible';
 import { ExternalLink } from '@/components/external-link';
@@ -51,18 +51,14 @@ export default function TabTwoScreen() {
           <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
         </ThemedText>
       </Collapsible>
-      <Collapsible title="Images">
+      <Collapsible title="Icons">
         <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
+          This app uses icons from{' '}
+          <ThemedText type="defaultSemiBold">@expo/vector-icons</ThemedText>.
         </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
+        <Ionicons name="logo-react" size={100} color="black" style={{ alignSelf: 'center' }} />
+        <ExternalLink href="https://icons.expo.fyi/">
+          <ThemedText type="link">Browse all icons</ThemedText>
         </ExternalLink>
       </Collapsible>
       <Collapsible title="Light and dark mode components">
