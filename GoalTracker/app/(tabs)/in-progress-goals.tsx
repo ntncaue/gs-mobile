@@ -1,23 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { AppColors, AppFontSizes, AppSpacing, AppBorderRadius } from '../../constants/app-theme';
-
-const inProgressGoals = [
-  { id: '1', name: 'Learn TypeScript', progress: '70%' },
-  { id: '2', name: 'Build a personal website', progress: '30%' },
-];
+import { useGoalContext } from '../../contexts/GoalContext';
+import { Goal } from '../../hooks/useGoals';
 
 export default function InProgressGoalsScreen() {
-  const renderItem = ({ item }: { item: { id: string; name: string; progress: string } }) => (
+  const { inProgressGoals } = useGoalContext();
+
+  const renderItem = ({ item }: { item: Goal }) => (
     <View style={styles.goalItem}>
       <Text style={styles.goalText}>{item.name}</Text>
-      <Text style={styles.progressText}>Progress: {item.progress}</Text>
+      {item.isProgressive && (
+        <Text style={styles.progressText}>Progresso: {item.progress || 0}%</Text>
+      )}
     </View>
   );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>In Progress Goals</Text>
+      <Text style={styles.title}>Metas em Progresso</Text>
       {inProgressGoals.length > 0 ? (
         <FlatList
           data={inProgressGoals}
@@ -27,7 +28,7 @@ export default function InProgressGoalsScreen() {
           contentContainerStyle={styles.listContent}
         />
       ) : (
-        <Text style={styles.noGoalsText}>No goals in progress yet!</Text>
+        <Text style={styles.noGoalsText}>Nenhuma meta em progresso ainda!</Text>
       )}
     </View>
   );

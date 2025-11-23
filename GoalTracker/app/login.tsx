@@ -14,7 +14,7 @@ export default function LoginScreen() {
       await signInWithEmailAndPassword(auth, email, password);
       router.replace('/(tabs)'); // Navigate to home screen after successful login
     } catch (error: any) {
-      Alert.alert("Login Error", error.message);
+      Alert.alert("Erro de Login", error.message);
     }
   };
 
@@ -32,7 +32,7 @@ export default function LoginScreen() {
       />
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="Senha"
         placeholderTextColor={AppColors.gray}
         value={password}
         onChangeText={setPassword}
@@ -42,7 +42,7 @@ export default function LoginScreen() {
         <Button title="Login" onPress={handleLogin} color={AppColors.primary} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Don't have an account? Register" onPress={() => router.push('/register')} color={AppColors.accent} />
+        <Button title="Não tem uma conta? Cadastre-se" onPress={() => router.push('/register')} color={AppColors.accent} />
       </View>
     </View>
   );

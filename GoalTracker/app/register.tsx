@@ -12,16 +12,16 @@ export default function RegisterScreen() {
   const handleRegister = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      Alert.alert("Registration Successful", "You can now log in.");
+      Alert.alert("Cadastro Realizado com Sucesso", "Você já pode fazer o login.");
       router.replace('/login'); // Navigate to login screen after successful registration
     } catch (error: any) {
-      Alert.alert("Registration Error", error.message);
+      Alert.alert("Erro no Cadastro", error.message);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
+      <Text style={styles.title}>Cadastro</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -33,17 +33,17 @@ export default function RegisterScreen() {
       />
       <TextInput
         style={styles.input}
-        placeholder="Password"
+        placeholder="Senha"
         placeholderTextColor={AppColors.gray}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <View style={styles.buttonContainer}>
-        <Button title="Register" onPress={handleRegister} color={AppColors.primary} />
+        <Button title="Cadastrar" onPress={handleRegister} color={AppColors.primary} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Already have an account? Login" onPress={() => router.push('/login')} color={AppColors.accent} />
+        <Button title="Já tem uma conta? Faça o Login" onPress={() => router.push('/login')} color={AppColors.accent} />
       </View>
     </View>
   );

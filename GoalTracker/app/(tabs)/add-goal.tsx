@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Switch, Alert } from 'react-native';
 import { AppColors, AppFontSizes, AppSpacing, AppBorderRadius } from '../../constants/app-theme';
+import { useGoalContext } from '../../contexts/GoalContext';
 
 export default function AddGoalScreen() {
   const [goalName, setGoalName] = useState('');
   const [isProgressive, setIsProgressive] = useState(false);
+  const { addGoal } = useGoalContext();
 
   const handleAddGoal = () => {
     if (goalName.trim() === '') {
-      Alert.alert('Error', 'Goal name cannot be empty.');
+      Alert.alert('Erro', 'O nome da meta não pode estar vazio.');
       return;
     }
-    // Here you would typically save the goal to a database
-    console.log('New Goal:', { goalName, isProgressive });
-    Alert.alert('Success', `Goal "${goalName}" added as ${isProgressive ? 'progressive' : 'one-time'}.`);
+    addGoal({ name: goalName, isProgressive });
+    Alert.alert('Sucesso', `Meta "${goalName}" adicionada como ${isProgressive ? 'progressiva' : 'de uma vez'}.`);
     setGoalName('');
     setIsProgressive(false);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add New Goal</Text>
+      <Text style={styles.title}>Adicionar Nova Meta</Text>
       <TextInput
         style={styles.input}
-        placeholder="Goal Name"
+        placeholder="Nome da Meta"
         placeholderTextColor={AppColors.gray}
         value={goalName}
         onChangeText={setGoalName}
       />
       <View style={styles.switchContainer}>
-        <Text style={styles.switchLabel}>Progressive Goal?</Text>
+        <Text style={styles.switchLabel}>Meta Progressiva?</Text>
         <Switch
           onValueChange={setIsProgressive}
           value={isProgressive}
@@ -38,7 +39,7 @@ export default function AddGoalScreen() {
         />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button title="Add Goal" onPress={handleAddGoal} color={AppColors.primary} />
+        <Button title="Adicionar Meta" onPress={handleAddGoal} color={AppColors.primary} />
       </View>
     </View>
   );

@@ -1,15 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { AppColors, AppFontSizes, AppSpacing, AppBorderRadius } from '../../constants/app-theme';
-
-const completedGoals = [
-  { id: '1', name: 'Finish React Native Course' },
-  { id: '2', name: 'Read "The Pragmatic Programmer"' },
-  { id: '3', name: 'Run 5k' },
-];
+import { useGoalContext } from '../../contexts/GoalContext';
+import { Goal } from '../../hooks/useGoals';
 
 export default function CompletedGoalsScreen() {
-  const renderItem = ({ item }: { item: { id: string; name: string } }) => (
+  const { completedGoals } = useGoalContext();
+
+  const renderItem = ({ item }: { item: Goal }) => (
     <View style={styles.goalItem}>
       <Text style={styles.goalText}>{item.name}</Text>
     </View>
@@ -17,7 +15,7 @@ export default function CompletedGoalsScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Completed Goals</Text>
+      <Text style={styles.title}>Metas Concluídas</Text>
       {completedGoals.length > 0 ? (
         <FlatList
           data={completedGoals}
@@ -27,7 +25,7 @@ export default function CompletedGoalsScreen() {
           contentContainerStyle={styles.listContent}
         />
       ) : (
-        <Text style={styles.noGoalsText}>No completed goals yet!</Text>
+        <Text style={styles.noGoalsText}>Nenhuma meta concluída ainda!</Text>
       )}
     </View>
   );

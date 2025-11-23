@@ -10,13 +10,13 @@ const mockChatGPTResponse = (answers: string[]) => {
   const rational = answers.filter(a => a === 'rational').length;
 
   if (introverted > 1 && rational > 1) {
-    return "Based on your responses, a career as a Software Engineer or Data Scientist might suit you well. These roles often involve deep analytical thinking and focused individual work.";
+    return "Com base em suas respostas, uma carreira como Engenheiro de Software ou Cientista de Dados pode ser uma boa opção para você. Essas funções geralmente envolvem pensamento analítico profundo e trabalho individual focado.";
   } else if (introverted > 1) {
-    return "You seem to be more introverted. Consider careers like Writer, Researcher, or Librarian, which often allow for independent work and quiet environments.";
+    return "Você parece ser mais introvertido. Considere carreiras como Escritor, Pesquisador ou Bibliotecário, que geralmente permitem trabalho independente e ambientes silenciosos.";
   } else if (rational > 1) {
-    return "Your rational tendencies suggest careers in fields like Finance, Engineering, or Consulting, where logical problem-solving is key.";
+    return "Suas tendências racionais sugerem carreiras em áreas como Finanças, Engenharia ou Consultoria, onde a resolução lógica de problemas é fundamental.";
   } else {
-    return "You have a balanced profile! Explore careers that offer variety and collaboration, such as Project Manager or Marketing Specialist.";
+    return "Você tem um perfil equilibrado! Explore carreiras que oferecem variedade e colaboração, como Gerente de Projetos ou Especialista em Marketing.";
   }
 };
 
@@ -28,20 +28,20 @@ export default function CareerTestScreen() {
 
   const questions = [
     {
-      question: "When making decisions, are you more inclined to rely on logic and objective analysis, or on personal values and how it impacts others?",
-      options: ["Logic and analysis (rational)", "Personal values and impact on others (empathetic)"]
+      question: "Ao tomar decisões, você se inclina mais a confiar na lógica e na análise objetiva, ou nos valores pessoais e em como isso afeta os outros?",
+      options: ["Lógica e análise (racional)", "Valores pessoais e impacto nos outros (empático)"]
     },
     {
-      question: "Do you prefer working independently on tasks, or collaborating closely with a team?",
-      options: ["Independently (introverted)", "Collaborating with a team (extroverted)"]
+      question: "Você prefere trabalhar de forma independente em tarefas ou colaborar em equipe?",
+      options: ["Independentemente (introvertido)", "Colaborando com uma equipe (extrovertido)"]
     },
     {
-      question: "In social gatherings, do you typically feel energized by interacting with many people, or do you find it draining and prefer smaller, more intimate conversations?",
-      options: ["Energized by many people (extroverted)", "Draining, prefer small groups (introverted)"]
+      question: "Em reuniões sociais, você normalmente se sente energizado ao interagir com muitas pessoas ou acha isso cansativo e prefere conversas menores e mais íntimas?",
+      options: ["Energizado por muitas pessoas (extrovertido)", "Cansativo, prefiro grupos pequenos (introvertido)"]
     },
     {
-      question: "When faced with a problem, do you tend to focus on the practical, immediate solutions, or on understanding the underlying theories and long-term implications?",
-      options: ["Practical, immediate solutions (pragmatic)", "Underlying theories and long-term implications (theoretical)"]
+      question: "Diante de um problema, você tende a se concentrar nas soluções práticas e imediatas ou em entender as teorias subjacentes e as implicações a longo prazo?",
+      options: ["Soluções práticas e imediatas (pragmático)", "Teorias subjacentes e implicações a longo prazo (teórico)"]
     },
   ];
 
@@ -66,14 +66,14 @@ export default function CareerTestScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Career Aptitude Test</Text>
+      <Text style={styles.title}>Teste de Aptidão de Carreira</Text>
 
       {careerSuggestion ? (
         <View style={styles.resultContainer}>
-          <Text style={styles.resultTitle}>Your Career Suggestion:</Text>
+          <Text style={styles.resultTitle}>Sua Sugestão de Carreira:</Text>
           <Text style={styles.suggestionText}>{careerSuggestion}</Text>
           <View style={styles.buttonWrapper}>
-            <Button title="Go to Home" onPress={() => router.replace('/(tabs)')} color={AppColors.primary} />
+            <Button title="Ir para a Home" onPress={() => router.replace('/(tabs)')} color={AppColors.primary} />
           </View>
         </View>
       ) : (
@@ -81,7 +81,7 @@ export default function CareerTestScreen() {
           <Text style={styles.question}>{currentQuestion.question}</Text>
           {currentQuestion.options.map((option, index) => (
             <View key={index} style={styles.buttonWrapper}>
-              <Button title={option} onPress={() => handleAnswer(option.includes('rational') ? 'rational' : option.includes('introverted') ? 'introverted' : 'other')} color={AppColors.accent} />
+              <Button title={option} onPress={() => handleAnswer(option.includes('racional') ? 'rational' : option.includes('introvertido') ? 'introverted' : 'other')} color={AppColors.accent} />
             </View>
           ))}
           {loading && <ActivityIndicator size="large" color={AppColors.primary} style={{ marginTop: AppSpacing.large }} />}

@@ -26,29 +26,29 @@ export default function TabLayout() {
       <Tabs.Screen
         name="add-goal"
         options={{
-          title: 'Add Goal',
+          title: 'Adicionar Meta',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="plus.circle.fill" color={color} />,
         }}
       />
       <Tabs.Screen
         name="in-progress-goals"
         options={{
-          title: 'In Progress',
+          title: 'Em Progresso',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="hourglass.bottomhalf.filled" color={color} />,
         }}
       />
       <Tabs.Screen
         name="completed-goals"
         options={{
-          title: 'Completed',
+          title: 'Concluídas',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="checkmark.circle.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore" // Keeping explore for now, can be repurposed or removed later
+        name="sobre"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Sobre',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="info.circle.fill" color={color} />,
         }}
       />
     </Tabs>
