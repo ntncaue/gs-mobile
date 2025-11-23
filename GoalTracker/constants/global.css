@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Color Palette */
+  --color-primary: #4CAF50; /* Green */
+  --color-primary-dark: #388E3C;
+  --color-primary-light: #81C784;
+  --color-accent: #FFC107; /* Amber */
+  --color-background-light: #f5f5f5;
+  --color-background-dark: #121212;
+  --color-text-light: #212121;
+  --color-text-dark: #e0e0e0;
+  --color-border: #bdbdbd;
+  --color-error: #D32F2F;
+
+  /* Font Sizes */
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 28px;
+
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+
+  /* Border Radius */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+}
+
+/* Example of how to use these variables in a StyleSheet (React Native doesn't directly use CSS variables) */
+/*
+import { StyleSheet } from 'react-native';
+
+export const globalStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'var(--color-background-light)', // This won't work directly
+  },
+  text: {
+    color: 'var(--color-text-light)', // This won't work directly
+    fontSize: 'var(--font-size-medium)', // This won't work directly
+  },
+});
+*/
+
+/* For web, these CSS variables would be directly usable. For React Native, we'll map them in a JS object. */
