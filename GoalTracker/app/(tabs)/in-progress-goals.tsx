@@ -1,19 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { AppColors, AppFontSizes, AppSpacing, AppBorderRadius } from '../../constants/app-theme';
 import { useGoalContext } from '../../contexts/GoalContext';
 import { Goal } from '../../hooks/useGoals';
+import { router } from 'expo-router';
 
 export default function InProgressGoalsScreen() {
   const { inProgressGoals } = useGoalContext();
 
   const renderItem = ({ item }: { item: Goal }) => (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{item.name}</Text>
-      {item.isProgressive && (
-        <Text style={styles.progressText}>Progresso: {item.progress || 0}%</Text>
-      )}
-    </View>
+    <TouchableOpacity onPress={() => router.push(`/edit-goal/${item.id}`)}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalText}>{item.name}</Text>
+        {item.isProgressive && (
+          <Text style={styles.progressText}>
+            Progresso: {item.progress || 0} / {item.quantity} {item.unit}
+          </Text>
+        )}
+      </View>
+    </TouchableOpacity>
   );
 
   return (

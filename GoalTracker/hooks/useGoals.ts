@@ -5,14 +5,16 @@ export interface Goal {
   name: string;
   isProgressive: boolean;
   isCompleted: boolean;
-  progress?: number; // for progressive goals
+  progress?: number; // for progressive goals, this will be the current progress
+  quantity?: number; // for progressive goals, this will be the total quantity
+  unit?: string; // for progressive goals, e.g., 'videos', 'dias', 'metros'
 }
 
 const initialGoals: Goal[] = [
-  { id: '1', name: 'Aprender React Native', isProgressive: true, isCompleted: false, progress: 70 },
+  { id: '1', name: 'Aprender React Native', isProgressive: true, isCompleted: false, progress: 7, quantity: 10, unit: 'vídeos' },
   { id: '2', name: 'Ler um livro', isProgressive: false, isCompleted: true },
   { id: '3', name: 'Correr 5km', isProgressive: false, isCompleted: true },
-  { id: '4', name: 'Criar um site pessoal', isProgressive: true, isCompleted: false, progress: 30 },
+  { id: '4', name: 'Criar um site pessoal', isProgressive: true, isCompleted: false, progress: 3, quantity: 10, unit: 'dias' },
 ];
 
 export function useGoals() {
@@ -25,6 +27,7 @@ export function useGoals() {
         ...goal,
         id: Math.random().toString(),
         isCompleted: false,
+        progress: goal.isProgressive ? 0 : undefined,
       },
     ]);
   }, []);
@@ -41,6 +44,7 @@ export function useGoals() {
   const completedGoals = goals.filter(goal => goal.isCompleted);
 
   return {
+    goals, // also return the full list of goals
     inProgressGoals,
     completedGoals,
     addGoal,

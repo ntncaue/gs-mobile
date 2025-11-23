@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { AppColors, AppFontSizes, AppSpacing, AppBorderRadius } from '../../constants/app-theme';
 import { useGoalContext } from '../../contexts/GoalContext';
 import { Goal } from '../../hooks/useGoals';
+import { router } from 'expo-router';
 
 export default function CompletedGoalsScreen() {
   const { completedGoals } = useGoalContext();
 
   const renderItem = ({ item }: { item: Goal }) => (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{item.name}</Text>
-    </View>
+    <TouchableOpacity onPress={() => router.push(`/edit-goal/${item.id}`)}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalText}>{item.name}</Text>
+      </View>
+    </TouchableOpacity>
   );
 
   return (

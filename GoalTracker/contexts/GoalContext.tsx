@@ -2,6 +2,7 @@ import React, { createContext, useContext, ReactNode } from 'react';
 import { useGoals, Goal } from '../hooks/useGoals';
 
 interface GoalContextType {
+  goals: Goal[];
   inProgressGoals: Goal[];
   completedGoals: Goal[];
   addGoal: (goal: Omit<Goal, 'id' | 'isCompleted'>) => void;

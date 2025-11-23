@@ -6,6 +6,8 @@ import { useGoalContext } from '../../contexts/GoalContext';
 export default function AddGoalScreen() {
   const [goalName, setGoalName] = useState('');
   const [isProgressive, setIsProgressive] = useState(false);
+  const [quantity, setQuantity] = useState('');
+  const [unit, setUnit] = useState('');
   const { addGoal } = useGoalContext();
 
   const handleAddGoal = () => {
@@ -13,10 +15,23 @@ export default function AddGoalScreen() {
       Alert.alert('Erro', 'O nome da meta não pode estar vazio.');
       return;
     }
-    addGoal({ name: goalName, isProgressive });
-    Alert.alert('Sucesso', `Meta "${goalName}" adicionada como ${isProgressive ? 'progressiva' : 'de uma vez'}.`);
+    if (isProgressive && (quantity.trim() === '' || unit.trim() === '')) {
+      Alert.alert('Erro', 'Para metas progressivas, a quantidade e a unidade são obrigatórias.');
+      return;
+    }
+
+    addGoal({
+      name: goalName,
+      isProgressive,
+      quantity: isProgressive ? parseInt(quantity, 10) : undefined,
+      unit: isProgressive ? unit : undefined,
+    });
+
+    Alert.alert('Sucesso', `Meta "${goalName}" adicionada.`);
     setGoalName('');
     setIsProgressive(false);
+    setQuantity('');
+    setUnit('');
   };
 
   return (
@@ -38,6 +53,27 @@ export default function AddGoalScreen() {
           thumbColor={isProgressive ? AppColors.primary : AppColors.white}
         />
       </View>
+
+      {isProgressive && (
+        <>
+          <TextInput
+            style={styles.input}
+            placeholder="Quantidade Total"
+            placeholderTextColor={AppColors.gray}
+            value={quantity}
+            onChangeText={setQuantity}
+            keyboardType="numeric"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Unidade de Medida (ex: vídeos, dias, metros)"
+            placeholderTextColor={AppColors.gray}
+            value={unit}
+            onChangeText={setUnit}
+          />
+        </>
+      )}
+
       <View style={styles.buttonWrapper}>
         <Button title="Adicionar Meta" onPress={handleAddGoal} color={AppColors.primary} />
       </View>
