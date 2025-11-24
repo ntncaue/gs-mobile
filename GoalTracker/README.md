@@ -1,50 +1,77 @@
-# Welcome to your Expo app 👋
+# GoalTracker App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Descrição
+O GoalTracker é um aplicativo móvel desenvolvido para ajudar os usuários a definir, acompanhar e gerenciar suas metas pessoais e profissionais. Com uma interface intuitiva, o aplicativo permite adicionar novas metas, monitorar o progresso das metas em andamento e visualizar as metas já concluídas, proporcionando uma experiência organizada e motivadora.
 
-## Get started
+## Integrantes
+*   **Felipe Gomes Costa Orikasa** - RM557435
+*   **Marcelo Siqueira Bonfim** - RM558254
+*   **Antonio Cauê Araujo da Silva** - RM558891
 
-1. Install dependencies
+## Como Rodar o Projeto
 
-   ```bash
-   npm install
-   ```
+### Pré-requisitos
+Certifique-se de ter o Node.js, npm (ou yarn) e o Expo CLI instalados em sua máquina.
 
-2. Start the app
+*   **Node.js**: [https://nodejs.org/](https://nodejs.org/)
+*   **Expo CLI**: Instale globalmente com `npm install -g expo-cli` ou `yarn global add expo-cli`.
 
-   ```bash
-   npx expo start
-   ```
+### Instalação
+1.  Clone este repositório:
+    ```bash
+    git clone [URL_DO_REPOSITORIO]
+    cd GoalTracker
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### Executando o Aplicativo
+Para iniciar o projeto em modo de desenvolvimento:
 ```bash
-npm run reset-project
+npm start
+# ou
+yarn start
 ```
+Isso abrirá uma nova aba no navegador com o Expo Dev Tools. Você pode escanear o QR code com o aplicativo Expo Go (disponível para Android e iOS) no seu celular, ou escolher rodar em um emulador/simulador.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Construindo o APK (Android)
+Para gerar um arquivo APK para Android, você precisará usar o EAS CLI (Expo Application Services).
 
-## Learn more
+1.  **Instale o EAS CLI** (se ainda não o fez):
+    ```bash
+    npm install -g eas-cli
+    ```
+2.  **Faça login na sua conta Expo**:
+    ```bash
+    eas login
+    ```
+    Isso abrirá uma página no navegador para você autenticar sua conta Expo.
 
-To learn more about developing your project with Expo, look at the following resources:
+3.  **Configure o projeto para EAS** (se ainda não o fez):
+    ```bash
+    eas build:configure
+    ```
+    Siga as instruções, selecionando `Android` quando perguntado sobre as plataformas.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+4.  **Inicie a build do APK**:
+    ```bash
+    eas build -p android --profile preview
+    ```
+    O processo de build será iniciado nos servidores da Expo. Você receberá um link para acompanhar o progresso e baixar o APK quando estiver pronto.
+    Se o build falhar devido a erros de permissão, certifique-se de estar logado com a conta Expo correta que tem acesso ao projeto. Use `eas whoami` para verificar e `eas login` para mudar de conta.
 
-## Join the community
+## Estrutura do Projeto
+O projeto segue a estrutura padrão de um aplicativo Expo/React Native, com as seguintes pastas principais:
+*   `app/`: Contém as telas e a navegação do aplicativo (usando `expo-router`).
+*   `components/`: Componentes React reutilizáveis.
+*   `constants/`: Constantes e configurações globais (temas, cores, etc.).
+*   `contexts/`: Contextos para gerenciamento de estado global.
+*   `hooks/`: Hooks personalizados.
+*   `config/`: Configurações de serviços (ex: Firebase).
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+Desenvolvido com ❤️ e Expo.
